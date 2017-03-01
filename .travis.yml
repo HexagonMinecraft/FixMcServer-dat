@@ -4,7 +4,6 @@ dotnet: 1.0.0-preview2-1-003177
 dist: trusty
 sudo: required
 before_install:
-- sudo add-apt-repository --yes ppa:arx/release
 - sudo apt-get update -d
 - sudo apt-get install -y -q innoextract wine
 - wget -O is.exe http://www.jrsoftware.org/download.php/is.exe
