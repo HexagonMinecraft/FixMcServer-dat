@@ -5,7 +5,7 @@ dist: trusty
 sudo: required
 before_install:
 - sudo dpkg --add-architecture i386
-- sudo add-apt-repository ppa:wine/wine-builds
+- sudo add-apt-repository --yes ppa:wine/wine-builds
 - sudo apt-get update -d
 - sudo apt-get -f install
 - sudo apt-get install -y -q innoextract
