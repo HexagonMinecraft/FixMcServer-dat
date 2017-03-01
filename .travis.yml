@@ -2,7 +2,7 @@ language: csharp
 mono: none
 dotnet: 1.0.0-preview2-1-003177
 dist: trusty
-sudo: required
+sudo: false
 before_install:
 - add-apt-repository --yes ppa:arx/release
 - apt-get update -d
