@@ -4,6 +4,8 @@ dotnet: 1.0.0-preview2-1-003177
 dist: trusty
 sudo: required
 before_install:
+- openssl aes-256-cbc -K $encrypted_7505b9e992fe_key -iv $encrypted_7505b9e992fe_iv
+  -in cert.pem.enc -out cert.pem -d
 - sudo add-apt-repository ppa:likemartinma/osslsigncode --yes
 - sudo dpkg --add-architecture i386
 - sudo apt-get update
@@ -12,13 +14,14 @@ before_install:
 - innoextract is.exe
 - mkdir -p ~/".wine/drive_c/inno"
 - cp -a app/* ~/".wine/drive_c/inno"
-- openssl aes-256-cbc -K $encrypted_7505b9e992fe_key -iv $encrypted_7505b9e992fe_iv -in cert.pem.enc -out .\\cert.pem -d
 install:
 - dotnet restore
 script:
 - dotnet publish -c release -r win10-x64
 - wine "C:\inno\ISCC.exe" "setup_script.iss" "/q"
-- osslsigncode sign -certs cert.pem -key cert.pem -pass $SIGNING_PASS -n "Fix MC server.dat" -i "https://github.com/HexagonMinecraft/FixMcServer-dat" -in "innosetup/fmsd-setup.exe" -out "innosetup/fsmd-setup-signed.exe"
+- osslsigncode sign -certs cert.pem -key cert.pem -pass $SIGNING_PASS -n "Fix MC server.dat"
+  -i "https://github.com/HexagonMinecraft/FixMcServer-dat" -in "innosetup/fmsd-setup.exe"
+  -out "innosetup/fsmd-setup-signed.exe"
 deploy:
   provider: releases
   api_key:
