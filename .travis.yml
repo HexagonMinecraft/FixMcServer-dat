@@ -4,8 +4,8 @@ dotnet: 1.0.0-preview2-1-003177
 dist: trusty
 sudo: required
 before_install:
-- openssl aes-256-cbc -K $encrypted_7505b9e992fe_key -iv $encrypted_7505b9e992fe_iv
-  -in cert.pem.enc -out cert.pem -d
+#- openssl aes-256-cbc -K $encrypted_7505b9e992fe_key -iv $encrypted_7505b9e992fe_iv
+#  -in cert.pem.enc -out cert.pem -d
 - sudo add-apt-repository ppa:likemartinma/osslsigncode --yes
 - sudo dpkg --add-architecture i386
 - sudo apt-get update
@@ -19,13 +19,13 @@ install:
 script:
 - dotnet publish -c release -r win10-x64
 - wine "C:\inno\ISCC.exe" "setup_script.iss" "/q"
-- osslsigncode sign -certs cert.pem -key cert.pem -pass $SIGNING_PASS -n "Fix MC server.dat"
-  -i "https://github.com/HexagonMinecraft/FixMcServer-dat" -in "innosetup/fmsd-setup.exe"
-  -out "innosetup/fsmd-setup-signed.exe"
+#- osslsigncode sign -certs cert.pem -key cert.pem -pass $SIGNING_PASS -n "Fix MC server.dat"
+#  -i "https://github.com/HexagonMinecraft/FixMcServer-dat" -in "innosetup/fmsd-setup.exe"
+#  -out "innosetup/fsmd-setup-signed.exe"
 deploy:
   provider: releases
   api_key:
     secure: uzOkfQ3fy0gYW5ZWyCU7Xsc2Ni+bMXMTNjjQboJNCbtaqdFVSK8PYYEitQUYcTF+AC7ktlzfw1LQuhuxVMOcgcGZFFTIauvfW8FtoUAUi6dlNnZqtKPFHvnFuDyJmNsXk8XeZvDoTg+pD+8JhvAzIVCX25y3eDQhGqF3QarQ47gkcO/f4s7DBViCL1i3altgDKlulBobOKdnOCcy1DbCLOUzW8P14t4qH1sM8B84P8ApmFX/yJkPOQLQIHibfa5Tn032wHd2gfKKn+SzltozivOTVwE70LgKN7nf4CICfP5rgq9Zax1VgKM0MLlVfFjnSaGGWABfw3mMldca3zLIbU9LNiexfBOZmJKnW0XyZX2cY/6Zkf8GQ6t5BevOuDVTL73NY2Fx1fvrRuzZjZ0o6U/QKJPG190KhyTG6bkU/sbjVrNdWG0Isr3Z5CX4QWmYZkkKB5wZ6cm0D5PlGEyftwfl7ID6TzijDAWzBbZ065onrrw0eqjYSEhJZR3oFcxd2Y78yCVuMRuly8C1L5YCzqf6x5O37x2qqcugwkhZ7aUSREbcjdG89zEgnd8N7HCagKdPLF36xQkCLsVs1FiMHvxz4TV7fsD80TLS9/0ftFvCyTDNEm2v0O4RP5gGLf1zh2gUxr2WctQf1bOO+ElCdpxNP/O5tVnLwwBg0f/AAgY=
-  file: innosetup/fmsd-setup-signed.exe
+  file: innosetup/fmsd-setup.exe
   on:
     repo: HexagonMinecraft/FixMcServer-dat
