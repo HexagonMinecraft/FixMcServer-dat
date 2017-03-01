@@ -4,7 +4,7 @@ dotnet: 1.0.0-preview2-1-003177
 dist: trusty
 sudo: required
 before_install:
-- dpkg --add-architecture i386
+- sudo dpkg --add-architecture i386
 - sudo add-apt-repository ppa:wine/wine-builds
 - sudo apt-get update -d
 - sudo apt-get -f install
