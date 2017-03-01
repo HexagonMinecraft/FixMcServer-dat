@@ -2,11 +2,11 @@ language: csharp
 mono: none
 dotnet: 1.0.0-preview2-1-003177
 dist: trusty
-sudo: false
+sudo: required
 before_install:
-- add-apt-repository --yes ppa:arx/release
-- apt-get update -d
-- apt-get install -y -q innoextract wine
+- sudo add-apt-repository --yes ppa:arx/release
+- sudo apt-get update -d
+- sudo apt-get install -y -q innoextract wine
 - wget -O is.exe http://www.jrsoftware.org/download.php/is.exe
 - innoextract is.exe
 - mkdir -p ~/".wine/drive_c/inno"
