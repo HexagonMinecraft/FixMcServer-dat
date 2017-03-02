@@ -252,3 +252,6 @@ paket-files/
 *.sln.iml
 innosetup/
 cert.pem
+app/
+tmp/
+is.exe

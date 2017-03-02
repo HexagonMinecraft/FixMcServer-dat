@@ -20,7 +20,7 @@ script:
 - dotnet publish -c release -r win10-x64
 - unset DISPLAY
 - wine "C:\inno\ISCC.exe" "setup_script.iss" "/q"
-- ls innosetup
+- sudo rm -r app/ tmp/ is.exe
 #- osslsigncode sign -certs cert.pem -key cert.pem -pass $SIGNING_PASS -n "Fix MC server.dat"
 #  -i "https://github.com/HexagonMinecraft/FixMcServer-dat" -in "innosetup/fmsd-setup.exe"
 #  -out "innosetup/fsmd-setup-signed.exe"
