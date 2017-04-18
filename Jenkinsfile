@@ -8,7 +8,7 @@ innoextract is.exe
 mkdir -p ~/".wine/drive_c/inno"
 cp -a app/* ~/".wine/drive_c/inno"
 
-dotnet restore'''
+/home/noah/.dotnet/dotnet restore'''
       }
     }
   }
