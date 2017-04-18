@@ -20,8 +20,10 @@ rm -r app/ tmp/ is.exe'''
       }
     }
     stage("archive") {
-      archiveArtifacts artifacts: 'innosetup/fmsd-setup.exe',
-      fingerprint: true
+      steps {
+        archiveArtifacts artifacts: 'innosetup/fmsd-setup.exe',
+        fingerprint: true
+      }
     }
   }
 }
