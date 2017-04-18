@@ -19,5 +19,9 @@ unset DISPLAY
 rm -r app/ tmp/ is.exe'''
       }
     }
+    stage("archive") {
+      archiveArtifacts artifacts: 'innosetup/fmsd-setup.exe',
+      fingerprint: true
+    }
   }
 }
