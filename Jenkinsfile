@@ -11,5 +11,13 @@ cp -a app/* ~/".wine/drive_c/inno"
 /home/noah/.dotnet/dotnet restore'''
       }
     }
+    stage('build'){
+      step {
+        sh '''dotnet publish -c release -r win10-x64
+unset DISPLAY
+wine "C:\inno\ISCC.exe" "setup_script.iss" "/q"
+rm -r app/ tmp/ is.exe'''
+      }
+    }
   }
 }
