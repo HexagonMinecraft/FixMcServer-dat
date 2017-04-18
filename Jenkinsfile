@@ -12,7 +12,7 @@ cp -a app/* ~/".wine/drive_c/inno"
       }
     }
     stage('build'){
-      step {
+      steps {
         sh '''dotnet publish -c release -r win10-x64
 unset DISPLAY
 wine "C:\\inno\\ISCC.exe" "setup_script.iss" "/q"
